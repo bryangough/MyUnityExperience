@@ -1,0 +1,732 @@
+fileFormatVersion: 2
+guid: 801b158d439e74594b4fc62eec7026f7
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: alienBeige_duck
+    21300002: alienBeige_hurt
+    21300004: alienBeige_stand
+    21300006: alienBlue_duck
+    21300008: alienBlue_hurt
+    21300010: alienBlue_stand
+    21300012: alienGreen_duck
+    21300014: alienGreen_hurt
+    21300016: alienGreen_stand
+    21300018: alienPink_duck
+    21300020: alienPink_hurt
+    21300022: alienPink_stand
+    21300024: alienYellow_duck
+    21300026: alienYellow_hurt
+    21300028: alienYellow_stand
+    21300030: box
+    21300032: boxAlt
+    21300034: boxAlt2
+    21300036: brickWall
+    21300038: bridge
+    21300040: castle
+    21300042: coinBronze
+    21300044: coinGold
+    21300046: coinSilver
+    21300048: gemBlue
+    21300050: gemGreen
+    21300052: gemRed
+    21300054: gemYellow
+    21300056: grass
+    21300058: hud_heartEmpty
+    21300060: hud_heartFull
+    21300062: hud_heartHalf
+    21300064: liquidWaterMid
+    21300066: liquidWaterTop
+    21300068: plant
+    21300070: shieldBronze
+    21300072: shieldGold
+    21300074: shieldSilver
+    21300076: slice03_03
+    21300078: swordBronze
+    21300080: swordGold
+    21300082: swordSilver
+    21300084: woodRoofPointy
+    21300086: woodWindowBlinds
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: alienBeige_duck
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 158
+        width: 67
+        height: 72
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: alienBeige_hurt
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 232
+        width: 67
+        height: 92
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: alienBeige_stand
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 446
+        width: 66
+        height: 92
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: alienBlue_duck
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 278
+        width: 67
+        height: 72
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: alienBlue_hurt
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 125
+        width: 67
+        height: 92
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: alienBlue_stand
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 352
+        width: 66
+        height: 92
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: alienGreen_duck
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 300
+        width: 69
+        height: 71
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: alienGreen_hurt
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 18
+        width: 69
+        height: 92
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: alienGreen_stand
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 446
+        width: 66
+        height: 92
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: alienPink_duck
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 373
+        width: 69
+        height: 71
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: alienPink_hurt
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 446
+        width: 69
+        height: 92
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: alienPink_stand
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 352
+        width: 66
+        height: 92
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: alienYellow_duck
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 15
+        width: 68
+        height: 67
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: alienYellow_hurt
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 3
+        width: 69
+        height: 81
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: alienYellow_stand
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 2
+        width: 66
+        height: 82
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: box
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 326
+        width: 70
+        height: 105
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: boxAlt
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 219
+        width: 70
+        height: 105
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: boxAlt2
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 84
+        width: 70
+        height: 70
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: brickWall
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 112
+        width: 70
+        height: 105
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bridge
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 433
+        width: 70
+        height: 105
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: castle
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 326
+        width: 70
+        height: 105
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: coinBronze
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 156
+        width: 70
+        height: 70
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: coinGold
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 228
+        width: 70
+        height: 70
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: coinSilver
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 62
+        width: 70
+        height: 70
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: gemBlue
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 64
+        width: 70
+        height: 70
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: gemGreen
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 64
+        width: 70
+        height: 70
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: gemRed
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 86
+        width: 70
+        height: 70
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: gemYellow
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 134
+        width: 70
+        height: 70
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: grass
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 219
+        width: 70
+        height: 105
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: hud_heartEmpty
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 15
+        width: 53
+        height: 45
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: hud_heartFull
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 17
+        width: 53
+        height: 45
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: hud_heartHalf
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 17
+        width: 53
+        height: 45
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: liquidWaterMid
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 433
+        width: 70
+        height: 105
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: liquidWaterTop
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 326
+        width: 70
+        height: 105
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: plant
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 433
+        width: 70
+        height: 105
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: shieldBronze
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 136
+        width: 70
+        height: 70
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: shieldGold
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 136
+        width: 70
+        height: 70
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: shieldSilver
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 206
+        width: 70
+        height: 70
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slice03_03
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 208
+        width: 70
+        height: 70
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: swordBronze
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 208
+        width: 70
+        height: 70
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: swordGold
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 280
+        width: 70
+        height: 70
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: swordSilver
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 280
+        width: 70
+        height: 70
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: woodRoofPointy
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 352
+        width: 65
+        height: 92
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: woodWindowBlinds
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 449
+        width: 65
+        height: 89
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

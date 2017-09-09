@@ -1,0 +1,54 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# http://www.codeandweb.com/texturepacker/unity
+#
+# Sprite sheet: ramgame.png (540 x 540)
+# $TexturePacker:SmartUpdate:0a61e110f959bfa6bdf28d79632fe44d:aed49d8d524a973ef86b0762a0748962:a7695ad0596189caa85bb4f1a14eaa8a$
+#
+
+alienBeige_duck;146;158;67;72;0;0
+alienBeige_hurt;146;232;67;92;0;0
+alienBeige_stand;357;446;66;92;0;0
+alienBlue_duck;362;278;67;72;0;0
+alienBlue_hurt;74;125;67;92;0;0
+alienBlue_stand;286;352;66;92;0;0
+alienGreen_duck;431;300;69;71;0;0
+alienGreen_hurt;2;18;69;92;0;0
+alienGreen_stand;289;446;66;92;0;0
+alienPink_duck;421;373;69;71;0;0
+alienPink_hurt;218;446;69;92;0;0
+alienPink_stand;218;352;66;92;0;0
+alienYellow_duck;431;15;68;67;0;0
+alienYellow_hurt;141;3;69;81;0;0
+alienYellow_stand;73;2;66;82;0;0
+box;146;326;70;105;0;0
+boxAlt;74;219;70;105;0;0
+boxAlt2;431;84;70;70;0;0
+brickWall;2;112;70;105;0;0
+bridge;146;433;70;105;0;0
+castle;74;326;70;105;0;0
+coinBronze;431;156;70;70;0;0
+coinGold;431;228;70;70;0;0
+coinSilver;359;62;70;70;0;0
+gemBlue;287;64;70;70;0;0
+gemGreen;215;64;70;70;0;0
+gemRed;143;86;70;70;0;0
+gemYellow;359;134;70;70;0;0
+grass;2;219;70;105;0;0
+hud_heartEmpty;322;15;53;45;0;0
+hud_heartFull;267;17;53;45;0;0
+hud_heartHalf;212;17;53;45;0;0
+liquidWaterMid;74;433;70;105;0;0
+liquidWaterTop;2;326;70;105;0;0
+plant;2;433;70;105;0;0
+shieldBronze;287;136;70;70;0;0
+shieldGold;215;136;70;70;0;0
+shieldSilver;359;206;70;70;0;0
+slice03_03;287;208;70;70;0;0
+swordBronze;215;208;70;70;0;0
+swordGold;290;280;70;70;0;0
+swordSilver;218;280;70;70;0;0
+woodRoofPointy;354;352;65;92;0;0
+woodWindowBlinds;425;449;65;89;0;0
