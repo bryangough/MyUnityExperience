@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class Lock : MonoBehaviour {
 
-	public ProgressBar bar;
-	public bool progressFlag = false;
+	//
+	ProgressBar bar;
+	//
+	bool progressFlag = false;
+	//
 	public bool progressAllowed = true;
+	//
 	public float progress = 0.0f;
+
+	//The speed the locks progress will change when pressed
+	public float increaseSpeed = 70.0f;
+	//The speed the locks progress will change when the button is released
+	public float decreaseSpeed = 300.0f;
 	// Use this for initialization
 	void Start () {
+		//GetComponentInChildren gets the first ProgressBar in any of the gameObjects below this one
 		bar = gameObject.GetComponentInChildren<ProgressBar>();
+		//reseting Progress at the start. Not the f is required for floats.
 		progress = 0.0f;
 	}
 	
@@ -20,25 +31,29 @@ public class Lock : MonoBehaviour {
 		{
 			return;
 		}
+		//
 		if(progressFlag && progressAllowed)
 		{
-			progress += 70.0f * Time.deltaTime;
+			progress += increaseSpeed * Time.deltaTime;
 			
 		}
 		else
 		{
-			progress -= 300.0f * Time.deltaTime;
+			progress -= decreaseSpeed * Time.deltaTime;
 		}
 		if(progress<0)
 		{
 			progress = 0;
 		}
+		//This is a null check. If bar doesn't exist, we don't try to pass it anything
 		if(bar)
 		{
-			bar.progess = progress;
+			bar.updateProgress( progress );
 		}
 	}
-
+	
+	// These are called by the button's Event Trigger script
+	//This is a flag system. The update call is where the work is done.
 	public void pointerDown()
 	{
 		progressFlag = true;

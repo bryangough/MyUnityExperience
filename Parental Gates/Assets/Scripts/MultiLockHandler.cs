@@ -2,30 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//The lock handler.
+//More locks can be added by 
 public class MultiLockHandler : MonoBehaviour {
 
+	//The list of locks to be used for this gate
 	public Lock[] locks;
-	// Use this for initialization
+	//How many locks are currently pressed
 	public int locksPress = 0;
+	//The number of locks needed to open the gate.
 	public int neededLocks = 3;
+	//The panel this should switch to when the locks are opened
 	public GameObject parentPanel;
-	private int iterator;
+	//Iterator for the for loops. I should find out if this is still best practice.
+	int iterator;
+	//For demonstration purposes I am showing this screen on 
+	//For use within a larger app, showParentPermissions should be commented out and 
+	//closePermissions called instead. Another object should then call showParentPermissions when
+	//You want to display the parent section.
 	void Start () {
 		showParentPermissions();
+		//closePermissions();
 	}
-	void reset()
-	{
-		gameObject.SetActive(true);
-		for(iterator=0;iterator<locks.Length;iterator++)
-		{
-			locks[iterator].progress = 0;
-			locks[iterator].progressAllowed = false;
-		}
-	}
+	
 	// Update is called once per frame
+	//
 	void Update () {
 		int finished = 0;
-
 		for(iterator=0;iterator<locks.Length;iterator++)
 		{
 			if( locks[iterator].progress>=100.0f )
@@ -38,7 +41,16 @@ public class MultiLockHandler : MonoBehaviour {
 			permissionsPassed();
 		}
 	}
-
+	//This resets all lockers progress to 0 and disable their current press. 
+	void reset()
+	{
+		for(iterator=0;iterator<locks.Length;iterator++)
+		{
+			locks[iterator].progress = 0;
+			locks[iterator].progressAllowed = false;
+		}
+	}
+	//These functions handle showing the two screens: the Parent Gate and the actual Parent Panel
 	public void showParentPermissions()
 	{
 		reset();
@@ -55,7 +67,8 @@ public class MultiLockHandler : MonoBehaviour {
 		gameObject.SetActive(false);
 		parentPanel.SetActive(true);
 	}
-
+	// These are called by the button's Event Trigger script
+	// Both help keep a count of how many buttons are currently pressed
 	public void lockPress()
 	{
 		locksPress++;
@@ -68,6 +81,7 @@ public class MultiLockHandler : MonoBehaviour {
 			}
 		}
 	}
+	
 	public void lockReleased()
 	{
 		locksPress--;
