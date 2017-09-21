@@ -6,13 +6,12 @@ public class GameHandler : MonoBehaviour {
 
 	public GameObject tilePrefab;
 	
-
+	public int numberOfPairs = 2;
 	public int width;
 	public int height;
 	public Vector2 offset;
 	public Vector2 cardDimensions;
 	public CardHandler [] cards;
-	public bool allowFlip = true;
 	public CardHandler firstCard;
 	public CardHandler secondCard;
 	public bool startFlipped = false;

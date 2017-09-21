@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 224406422218367236}
   - component: {fileID: 222865624511851308}
   - component: {fileID: 114034687710561674}
+  - component: {fileID: 114380070636244498}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -128,6 +129,9 @@ MonoBehaviour:
   cardAnimator: {fileID: 95962568733465128}
   cardText: {fileID: 114034687710561674}
   gameHandler: {fileID: 0}
+  model:
+    displayText: 
+    sound: {fileID: 0}
   isMatched: 0
 --- !u!114 &114034687710561674
 MonoBehaviour:
@@ -189,6 +193,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114380070636244498
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1369761050902704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
 --- !u!114 &114397767571008050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -347,7 +364,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -280, y: 211}
+  m_AnchoredPosition: {x: -760, y: 226}
   m_SizeDelta: {x: 190, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224406422218367236
@@ -366,7 +383,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.00001335144}
-  m_SizeDelta: {x: 277.78998, y: -57.21}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224776331148405988
 RectTransform:
