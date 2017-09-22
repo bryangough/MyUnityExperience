@@ -1004,8 +1004,8 @@ MonoBehaviour:
   - {fileID: 1531832612}
   - {fileID: 126483770}
   - {fileID: 636319416}
-  parallaxScale: 10
-  parallaxReductionFactor: 0.5
+  parallaxScale: {x: 20, y: 20}
+  parallaxReductionFactor: {x: 0.5, y: 0.7}
   smoothing: 1
 --- !u!1 &1430583621
 GameObject:
@@ -1645,7 +1645,10 @@ MonoBehaviour:
   h: 0
   v: 0
   acceleration: 0
-  limit: 4
+  moveDist: {x: 4, y: 0.5}
+  max: {x: 4, y: 1}
+  min: {x: -4, y: 0}
+  smoothing: 2
 --- !u!1 &1792210831
 GameObject:
   m_ObjectHideFlags: 0
