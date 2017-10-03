@@ -2,20 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class GameHandler : MonoBehaviour {
 
 	public GameObject tilePrefab;
 	
-	public int numberOfPairs = 2;
-	public int width;
-	public int height;
+	public int numberOfPairs = 4;
+	//public int width;
+	//public int height;
 	public Vector2 offset;
 	public Vector2 cardDimensions;
 	public CardHandler [] cards;
 	public CardHandler firstCard;
 	public CardHandler secondCard;
 	public bool startFlipped = false;
+	private GridLayoutGroup grid;
 	// Use this for initialization
+	void Awake()
+	{
+		grid = this.GetComponent<GridLayoutGroup>();
+	}
 	void Start () {
 		createCards();
 	}
@@ -30,37 +36,32 @@ public class GameHandler : MonoBehaviour {
 	}
 	public void createCards()
 	{
-		cards = new CardHandler[width * height];
-
-		int numPairs = (width * height) /2;
-		pairArray = new CardModel[width*height];
-		for(int x=0;x<numPairs;x++)
+		int numPairs = numberOfPairs *2;
+		cards = new CardHandler[numPairs];
+		pairArray = new CardModel[numPairs];
+		for(int x=0;x<numberOfPairs;x++)
 		{
 			pairArray[x] = cardPossibleValues[x];
-			pairArray[x+numPairs] = cardPossibleValues[x];
+			pairArray[x+numberOfPairs] = cardPossibleValues[x];
 		}
 		Shuffle(pairArray);
 
 		//
-		for (int i = 0; i < width; i++)
+		for (int i = 0; i < numPairs; i++)
 		{
-			for (int j = 0; j < height; j++)
-			{
-				GameObject cardGameObject = (GameObject)Instantiate(tilePrefab, Vector3.zero, Quaternion.identity);
-				CardHandler card = cardGameObject.GetComponent<CardHandler>();
-				//Canvas elements must be part of a Canvas chain
-				card.transform.parent = this.transform;
-				card.transform.localPosition = new Vector3(i*cardDimensions.x+offset.x,j*cardDimensions.y+offset.y, 0);//-i*0.01f);	
-				card.gameHandler = this;
-				card.setModel( pairArray[i*width+j] );
+			GameObject cardGameObject = (GameObject)Instantiate(tilePrefab, Vector3.zero, Quaternion.identity);
+			CardHandler card = cardGameObject.GetComponent<CardHandler>();
+			//Canvas elements must be part of a Canvas chain
+			card.transform.parent = this.transform;
+			card.transform.localPosition = new Vector3(0,0, 0);//-i*0.01f);	
+			card.gameHandler = this;
+			card.setModel( pairArray[i] );
 
-				if(startFlipped)
-				{
-					card.startFlipped();
-				}
-				//card.model = pairArray[i*width+j];
-				cards[i*width+j] = card;
+			if(startFlipped)
+			{
+				card.startFlipped();
 			}
+			cards[i] = card;
 		}
 		
 	}
@@ -150,4 +151,8 @@ public class GameHandler : MonoBehaviour {
 		}
 		return true;
     }      
+	void OnRectTransformDimensionsChange()
+	{
+		//inventoryGrid.cellSize = Vector2.one * Mathf.RoundToInt(inventoryPanel.rect.width/2 - 16);
+	}
 }
