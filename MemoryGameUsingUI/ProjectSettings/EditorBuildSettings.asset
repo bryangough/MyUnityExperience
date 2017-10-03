@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/Memory.unity
+  - enabled: 0
+    path: Assets/MemoryGame/Scenes/Memory.unity
     guid: 687cd4699e5264acb8ea2176b2b3c531
+  - enabled: 1
+    path: Assets/ScrollableList/Scenes/DraggableList.unity
+    guid: 3ff48a09025a545258d2879c911579ed
