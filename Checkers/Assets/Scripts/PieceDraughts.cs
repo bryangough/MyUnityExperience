@@ -4,8 +4,8 @@ using UnityEngine;
 
 public enum PieceColor
 {
-    WHITE,
-    BLACK
+    WHITE = 0,
+    BLACK = 1
 };
 
 public enum PieceType
@@ -26,7 +26,7 @@ public class PieceDraughts : MonoBehaviour
 
 	public void Setup(int x, int y,
         PieceColor color,
-        PieceType type = PieceType.KING)
+        PieceType type = PieceType.MAN)
 	{
 		this.x = x;
 		this.y = y;
@@ -88,7 +88,6 @@ public class PieceDraughts : MonoBehaviour
 	public void doMove()
 	{
 		Vector3 pos = this.transform.localPosition;
-		Debug.Log(x+" "+y);
 		pos.x = x;
 		pos.y = -y;
 		this.transform.localPosition = pos;

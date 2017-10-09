@@ -3,12 +3,12 @@ using System.Collections;
 
 public class Board : MonoBehaviour
 {
-    protected int player;
+    protected PieceColor player;
     //next steps here
 
 	public Board()
 	{
-		player = 1;
+		player = PieceColor.BLACK;
 	}
 
 	public virtual Move[] GetMoves()
@@ -26,7 +26,7 @@ public class Board : MonoBehaviour
 		return true;
 	}
 
-	public virtual int GetCurrentPlayer()
+	public virtual PieceColor GetCurrentPlayer()
 	{
 		return player;
 	}
