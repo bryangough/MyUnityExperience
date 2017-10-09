@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class UiHandler : MonoBehaviour {
 	public Text playerLabel;
-	public BoardDraughts theBoard;
+	public GameBoard theBoard;
 	
 	public WinScreen winScreen;
 	public void playerChange()
 	{
-		if(theBoard.GetCurrentPlayer() == PieceColor.BLACK)
+		if(theBoard.board.GetCurrentPlayer() == PieceColor.BLACK)
 		{
 			playerLabel.text = "Player: RED";
 		}
@@ -28,7 +28,7 @@ public class UiHandler : MonoBehaviour {
 	public void showWinScreen()
 	{
 		//theBoard
-		winScreen.displayMe(theBoard.GetCurrentPlayer());
+		winScreen.displayMe(theBoard.board.GetCurrentPlayer());
 	}
 	
 	void Update () {

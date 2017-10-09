@@ -2,29 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PieceColor
+public class PieceModel
 {
-    WHITE = 0,
-    BLACK = 1
-};
+	public delegate void AnimationEvent();
+  	public event AnimationEvent OnMove;
+	public event AnimationEvent OnKing;
+	public event AnimationEvent OnDestroyed;
 
-public enum PieceType
-{
-    MAN,
-    KING
-};
-public class PieceDraughts : MonoBehaviour
-{
+
     public int x;
     public int y;
     public PieceColor color;
-    public PieceType type;
-	public Sprite image1;
-	public Sprite image2;
-	public GameObject crown;
-    // next steps here
-
-	public void Setup(int x, int y,
+    public PieceType type;	
+    
+	public PieceModel(int x, int y,
         PieceColor color,
         PieceType type = PieceType.MAN)
 	{
@@ -32,68 +23,49 @@ public class PieceDraughts : MonoBehaviour
 		this.y = y;
 		this.color = color;
 		this.type = type;
-		
-		setTeam();
-		if(this.type==PieceType.MAN)
-		{
-			crown.SetActive(false);
-		}
 	}
 
-	void setTeam()
-	{
-		SpriteRenderer[] sr = gameObject.GetComponentsInChildren<SpriteRenderer>();
-		foreach(SpriteRenderer s in sr)
-		{
-			if( this.color == PieceColor.WHITE )
-			{
-				s.sprite = image1;
-			}
-			else
-			{
-				s.sprite = image2;
-			}
-		}
-	}
-	public void Move (MoveDraughts move, ref PieceDraughts [,] board)
+	
+	public void Move (MoveModel move, ref PieceModel [,] board)
 	{
 		board[move.y, move.x] = this;
 		board[y, x] = null;
 		x = move.x;
 		y = move.y;
 		// next steps here
-		if (move.success)
+		if ( move.isCapture() )
 		{
-			PieceDraughts piece = board[move.removeY, move.removeX];
-			Destroy(piece.gameObject);
-			board[move.removeY, move.removeX] = null;
+			PieceModel piece = board[move.capture.removeY, move.capture.removeX];
+			piece.doRemove(ref board);
+			
 		}
-		doMove();
+		OnMove();
+		//doMove();
 
 		if (type == PieceType.KING)
     		return;
 
 		doKinging(ref board);
 	}
-	public void doKinging(ref PieceDraughts [,] board)
+	public void doKinging(ref PieceModel [,] board)
 	{
 		int rows = board.GetLength(0)-1;
 		Debug.Log(""+color+" "+y+" "+rows);
 		if (color == PieceColor.WHITE && y == 0 || color == PieceColor.BLACK && y == rows)
 		{
 			type = PieceType.KING;
-			crown.SetActive(true);
+			OnKing();
+			
+			//crown.SetActive(true);
 		}
 	}
-	public void doMove()
+	//remove self
+	public void doRemove(ref PieceModel [,] board)
 	{
-		Vector3 pos = this.transform.localPosition;
-		pos.x = x;
-		pos.y = -y;
-		this.transform.localPosition = pos;
+		board[y, x] = null;
+		OnDestroyed();
 	}
-
-	private bool IsMoveInBounds(int x, int y, ref PieceDraughts[,] board)
+	private bool IsMoveInBounds(int x, int y, ref PieceModel[,] board)
 	{
 		int rows = board.GetLength(0);
 		int cols = board.GetLength(1);
@@ -102,7 +74,7 @@ public class PieceDraughts : MonoBehaviour
 		return true;
 	}
 
-	public Move[] GetMoves(ref PieceDraughts[,] board)
+	public Move[] GetMoves(ref PieceModel[,] board)
 	{
 		List<Move> moves = new List<Move>();
 		if (type == PieceType.KING)
@@ -111,7 +83,7 @@ public class PieceDraughts : MonoBehaviour
 			moves = GetMovesMan(ref board);
 		return moves.ToArray();
 	}
-	private List<Move> GetMovesMan(ref PieceDraughts[,] board)
+	private List<Move> GetMovesMan(ref PieceModel[,] board)
 	{
 		// next steps here
 		List<Move> moves = new List<Move>(2);
@@ -126,10 +98,10 @@ public class PieceDraughts : MonoBehaviour
 			
 			if (!IsMoveInBounds(nextX, nextY, ref board))
     			continue;
-			PieceDraughts p = board[nextY, nextX];
+			PieceModel p = board[nextY, nextX];
 			if (p != null && p.color == color)
     			continue;
-			MoveDraughts m = new MoveDraughts();
+			MoveModel m = new MoveModel();
 			m.piece = this;
 			if (p == null)
 			{
@@ -148,15 +120,13 @@ public class PieceDraughts : MonoBehaviour
 				
 				m.x = hopX;
 				m.y = hopY;
-				m.success = true;
-				m.removeX = nextX;
-				m.removeY = nextY;
+				m.capture = new Capture(nextX, nextY);
 			}
 			moves.Add(m);
 		}
 		return moves;
 	}
-	private List<Move> GetMovesKing(ref PieceDraughts[,] board)
+	private List<Move> GetMovesKing(ref PieceModel[,] board)
 	{
 		// next steps here
 		List<Move> moves = new List<Move>();
@@ -172,10 +142,10 @@ public class PieceDraughts : MonoBehaviour
 
 				if (IsMoveInBounds(nowX, nowY, ref board))
 				{
-					PieceDraughts p = board[nowY, nowX];
+					PieceModel p = board[nowY, nowX];
 					if (p != null && p.color == color)
     					break;
-					MoveDraughts m = new MoveDraughts();
+					MoveModel m = new MoveModel();
 					m.piece = this;
 					if (p == null)
 					{
@@ -188,11 +158,10 @@ public class PieceDraughts : MonoBehaviour
 						int hopY = nowY + mY;
 						if (!IsMoveInBounds(hopX, hopY, ref board))
 							break;
-						m.success = true;
+						
 						m.x = hopX;
 						m.y = hopY;
-						m.removeX = nowX;
-						m.removeY = nowY;
+						m.capture = new Capture(nowX, nowY);
 					}
 					moves.Add(m);
 					nowX += mX;
@@ -202,14 +171,5 @@ public class PieceDraughts : MonoBehaviour
 		}
 		return moves;
 	}
-	void OnDestroy()
-	{
-
-	}
-	/*void OnMouseDown()
-	{
-		Debug.Log("asdf");
-		GameObject touchedObject = this.gameObject;
-        Debug.Log("Touched " + touchedObject.transform.name);
-	} */
+	
 }

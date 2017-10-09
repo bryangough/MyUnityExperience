@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Square : MonoBehaviour {
 
-	public PieceDraughts currentPiece;
-	public GameBoard board;
+	//public PieceModel currentPiece;
+	//public GameBoard board;
 	public int i;
 	public int j;
 	// Use this for initialization
@@ -19,14 +19,14 @@ public class Square : MonoBehaviour {
 		
 	}
 
-	public bool isEmpty()
+	/*public bool isEmpty()
 	{
 		if( currentPiece == null)
 		{
 			return true;
 		}
 		return false;
-	}
+	}*/
 	public void highLight()
 	{
 		spriteRenderer.color = Color.red;

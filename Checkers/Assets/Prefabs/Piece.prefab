@@ -95,16 +95,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1286687785394068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09e54786f5e6441e8bf491aaabc8df98, type: 3}
+  m_Script: {fileID: 11500000, guid: b05d105a4caf94570af31fe8bb4b08b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  y: 0
-  color: 0
-  type: 0
+  crown: {fileID: 1762167898751060}
+  prefab: {fileID: 1286687785394068}
   image1: {fileID: 21300000, guid: 65f595cf5f3f3438eac0961fb73de496, type: 3}
   image2: {fileID: 21300000, guid: 0bbafe6bf879044f58aa1e2e1f213fa0, type: 3}
-  crown: {fileID: 1762167898751060}
 --- !u!212 &212195772017327478
 SpriteRenderer:
   m_ObjectHideFlags: 1

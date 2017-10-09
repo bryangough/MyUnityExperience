@@ -511,7 +511,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1676583415}
   - component: {fileID: 1676583413}
-  - component: {fileID: 1676583414}
   - component: {fileID: 1676583416}
   m_Layer: 0
   m_Name: GameBoard
@@ -531,30 +530,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86983ce69bf94ecdb637e37576d5c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 8
-  height: 8
   tileDim: {x: 150, y: 150}
   tile1: {fileID: 1784159273614620, guid: 648c11d8db3c6432d9109d54737eba51, type: 2}
   tile2: {fileID: 1880805524145970, guid: 7a4a3cbf76c81409893dbd5e7827e424, type: 2}
-  gamePiece: {fileID: 1286687785394068, guid: 2e0dbe6123136496dbefd51c3b89e7a7, type: 2}
---- !u!114 &1676583414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1676583412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54cfab0be7f914764b436f0ef2a1d70c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 8
-  numPieces: 12
-  prefab: {fileID: 1286687785394068, guid: 2e0dbe6123136496dbefd51c3b89e7a7, type: 2}
-  gameBoard: {fileID: 1676583413}
+  piecePrefab: {fileID: 1286687785394068, guid: 2e0dbe6123136496dbefd51c3b89e7a7,
+    type: 2}
   selectedSquare: {fileID: 0}
   onlyJumps: 0
-  gameDone: 0
 --- !u!224 &1676583415
 RectTransform:
   m_ObjectHideFlags: 0
@@ -910,5 +892,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLabel: {fileID: 1019750240}
-  theBoard: {fileID: 1676583414}
+  theBoard: {fileID: 1676583413}
   winScreen: {fileID: 1463896770}

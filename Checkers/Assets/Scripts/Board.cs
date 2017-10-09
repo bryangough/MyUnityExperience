@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Board : MonoBehaviour
+public class Board
 {
     protected PieceColor player;
     //next steps here
@@ -33,7 +33,7 @@ public class Board : MonoBehaviour
 
 	
 
-	public virtual float Evaluate(int player)
+	public virtual float Evaluate(PieceColor player)
 	{
 		return Mathf.NegativeInfinity;
 	}
