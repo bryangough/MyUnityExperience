@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameBoard : MonoBehaviour {
 
+	BoardDraughts board;
 	public int width = 8;
 	public int height = 8;
 	public Vector2 tileDim;
@@ -14,8 +15,8 @@ public class GameBoard : MonoBehaviour {
 	public Square [,] map;
 	// Use this for initialization
 	void Start () {
-		createBoard();
-		placePieces();
+		//createBoard();
+		//placePieces();
 	}
 	
 	// Update is called once per frame
@@ -29,8 +30,8 @@ public class GameBoard : MonoBehaviour {
 	
 	public void createBoard()
 	{
-		float hexagonWidth = tileDim.x/100.0f;
-		float hexagonHeight = tileDim.y/100.0f;
+		float hexagonWidth = tileDim.x/100.0f*0.6f;
+		float hexagonHeight = tileDim.y/100.0f*0.6f;
 		//
 		//map = new Tile[Width, Height];
 		GameObject matIndex = tile1;
@@ -40,28 +41,32 @@ public class GameBoard : MonoBehaviour {
 			matIndex = (matIndex == tile1) ? tile2 : tile1;
 			for (int j = 0; j < height; j++)
 			{
-				matIndex = (matIndex == tile1) ? tile2 : tile1;
-				
+				matIndex = (matIndex == tile1) ? tile2 : tile1;				
 				GameObject tile = (GameObject)Instantiate(matIndex, Vector3.zero, Quaternion.identity);
 				tile.transform.parent = gameObject.transform;
-						
-				float hexagonX = hexagonWidth * i;
-				float hexagonY = -hexagonHeight * j;
+				float hexagonX = i;
+				float hexagonY = -j;
 				tile.transform.localPosition = new Vector3(hexagonX,hexagonY, 0);//-i*0.01f)
-
-				map[i,j] = tile.GetComponent<Square>();	
-				//
-				/*Debug.Log(i+" "+j+","+map+",");
-				Vector3 pos = map[i,j].gameObject.transform.position;
-				pos.x = hexagonX;
-				pos.y = hexagonY;
-				map[i,j].transform.position = pos;*/
+				Square square = tile.GetComponent<Square>();
+				map[j,i] = square;
+				square.j = i;
+				square.i = j;
 			}
 		}
 		gameObject.transform.Translate(new Vector3(-hexagonWidth * width / 2.0f,  hexagonHeight * height / 2.0f, 0));
 	}
+	public void resetHighlights()
+	{
+		for (int i = 0; i < width; i++)
+		{
+			for (int j = 0; j < height; j++)
+			{
+				map[j,i].resetHighlight();
+			}
+		}
+	}
 
-	public void placePieces()
+	/*public void placePieces()
 	{
 		for(var y=0;y<3;y++)
 		{
@@ -72,7 +77,6 @@ public class GameBoard : MonoBehaviour {
 				piece.transform.parent = gameObject.transform;
 				piece.transform.position = map[x+x+rem,y].transform.position;
 			}
-		}
-		
-	}
+		}	
+	}*/
 }
