@@ -10,17 +10,22 @@ public class Piece : MonoBehaviour {
 	public Sprite image1;
 	public Sprite image2;
 	public PieceModel model;
+	public float speed = 3.0f;
+	//
+	public Vector2 movingTo = new Vector2();
+	public bool moving = false;
 	// Use this for initialization
 	public void setup (PieceModel pieceModel) {
 		this.model = pieceModel;
-		//go.transform.position = pos;
+		setTeam();
 		if( this.model.type == PieceType.MAN )
 		{
 			crown.SetActive(false);
 		}
-		setTeam();
 		setPosition();
-		this.model.OnMove += setPosition;
+		//watch Model
+		this.model.OnMove += moveTo;
+		this.model.OnJump += jumpTo;
 		this.model.OnDestroyed += destroyMe;
 		this.model.OnKing += kingMe;
 	}
@@ -39,6 +44,19 @@ public class Piece : MonoBehaviour {
 			}
 		}
 	}
+	
+	public void jumpTo()
+	{
+		moveTo();
+		speed = 7.0f;
+	}
+	public void moveTo()
+	{
+		movingTo.x = this.model.x;
+		movingTo.y = -this.model.y;
+		moving = true;
+		speed = 3.0f;
+	}
 	public void setPosition()
 	{
 		Vector3 pos = this.transform.localPosition;
@@ -50,7 +68,7 @@ public class Piece : MonoBehaviour {
 
 	public void destroyMe()
 	{
-		Destroy(this.gameObject);
+		Destroy(this.gameObject, 0.6f);
 	}
 	public void kingMe()
 	{
@@ -60,7 +78,16 @@ public class Piece : MonoBehaviour {
 		}
 	}
 	void Update () {
-		
+		if(moving)
+		{
+			float step = speed * Time.deltaTime;
+			transform.localPosition = Vector3.MoveTowards(transform.localPosition, movingTo, step);
+			if(transform.localPosition.x == movingTo.x && transform.localPosition.y == movingTo.y)
+			{
+				movingTo = new Vector2();
+				moving = false;
+			}
+		}
 	}
 	public static Piece buildPiece(PieceModel pieceModel, GameObject parentObject, GameObject prefab)
 	{

@@ -14,8 +14,8 @@ public class GameBoard : MonoBehaviour {
 	
 	//Player input
 	public Move[] possibleMoves;
-	public Square selectedSquare;
 	public bool onlyJumps = false;
+	public MoveModel nextModel = null;
 	//
 	void Start () {
 		board = new BoardModel();
@@ -31,6 +31,11 @@ public class GameBoard : MonoBehaviour {
 		{
 			return;
 		}
+		/*if( nextModel != null)
+		{
+			testForDoubleJump(nextModel);
+			nextModel = null;
+		}*/
 		Square square = null;
 		//mobile
 		if ( Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began )
@@ -65,7 +70,6 @@ public class GameBoard : MonoBehaviour {
 					{
 						//can move!
 						square.highLight();
-						selectedSquare = square;
 						foreach (Move mv in possibleMoves)
 						{
 							MoveModel m = (MoveModel)mv;
@@ -88,48 +92,52 @@ public class GameBoard : MonoBehaviour {
 							this.resetHighlights();
 							//do move
 							board.movePiece(m);
-							//
-							if( m.isCapture() )
-							{
-								Move[] jumpMoves = board.getPiecesMoves(m.piece);
-								List<Move> tempJumpMoves = new List<Move>();
-								if(jumpMoves.Length > 0)
-								{
-									foreach (Move secondJumpMove in jumpMoves)
-									{
-										MoveModel nextJump = (MoveModel)secondJumpMove;
-										if( nextJump.isCapture() )
-										{
-											tempJumpMoves.Add(nextJump);
-											Square highlightSquare = this.map[nextJump.y, nextJump.x];
-											highlightSquare.highLightMoveable();
-										}
-									}
-								}
-								if( tempJumpMoves.Count>0 )
-								{
-									possibleMoves = tempJumpMoves.ToArray();
-									Debug.Log("possibleMoves"+possibleMoves+" "+tempJumpMoves.Count+" "+tempJumpMoves);
-									onlyJumps = true;
-									Square successSquare = this.map[m.y,m.x];
-									successSquare.highLight();
-									selectedSquare = successSquare;
-									//
-								}
-								else
-								{
-									resetPlayer();
-								}
-							}
-							else
-							{
-								resetPlayer();
-							}
+							//below needs to be moved to after the animation completes
+							nextModel = m;
+							testForDoubleJump(nextModel);
 							break;
 						}
 					}
 				}
 			}
+		}
+	}
+	public void testForDoubleJump(MoveModel m)
+	{
+		if( m.isCapture() )
+		{
+			Move[] jumpMoves = board.getPiecesMoves(m.piece);
+			List<Move> tempJumpMoves = new List<Move>();
+			if(jumpMoves.Length > 0)
+			{
+				foreach (Move secondJumpMove in jumpMoves)
+				{
+					MoveModel nextJump = (MoveModel)secondJumpMove;
+					if( nextJump.isCapture() )
+					{
+						tempJumpMoves.Add(nextJump);
+						Square highlightSquare = this.map[nextJump.y, nextJump.x];
+						highlightSquare.highLightMoveable();
+					}
+				}
+			}
+			if( tempJumpMoves.Count>0 )
+			{
+				possibleMoves = tempJumpMoves.ToArray();
+				Debug.Log("possibleMoves"+possibleMoves+" "+tempJumpMoves.Count+" "+tempJumpMoves);
+				onlyJumps = true;
+				Square successSquare = this.map[m.y,m.x];
+				successSquare.highLight();
+				//
+			}
+			else
+			{
+				resetPlayer();
+			}
+		}
+		else
+		{
+			resetPlayer();
 		}
 	}
 	public void resetPlayer()

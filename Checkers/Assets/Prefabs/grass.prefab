@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4816928297379200}
   - component: {fileID: 212190476265147966}
-  - component: {fileID: 61812573496139044}
   - component: {fileID: 114691623169135916}
   m_Layer: 0
   m_Name: grass
@@ -42,31 +41,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61812573496139044
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1880805524145970}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
-    newSize: {x: 1.28, y: 1.28}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.28, y: 1.28}
-  m_EdgeRadius: 0
 --- !u!114 &114691623169135916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -78,8 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a008a325b38f4a62a37ef3d07e2bbfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPiece: {fileID: 0}
-  board: {fileID: 0}
+  i: 0
+  j: 0
 --- !u!212 &212190476265147966
 SpriteRenderer:
   m_ObjectHideFlags: 1

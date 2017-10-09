@@ -6,6 +6,7 @@ public class PieceModel
 {
 	public delegate void AnimationEvent();
   	public event AnimationEvent OnMove;
+	public event AnimationEvent OnJump;
 	public event AnimationEvent OnKing;
 	public event AnimationEvent OnDestroyed;
 
@@ -37,9 +38,12 @@ public class PieceModel
 		{
 			PieceModel piece = board[move.capture.removeY, move.capture.removeX];
 			piece.doRemove(ref board);
-			
+			OnJump();
 		}
-		OnMove();
+		else
+		{
+			OnMove();
+		}
 		//doMove();
 
 		if (type == PieceType.KING)
