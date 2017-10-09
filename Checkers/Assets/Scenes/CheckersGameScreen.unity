@@ -150,48 +150,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e0dbe6123136496dbefd51c3b89e7a7, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &931067824
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4920363944420282, guid: f80d9e82b4fe244fc937dc02bad32617, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -7.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 4920363944420282, guid: f80d9e82b4fe244fc937dc02bad32617, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 2.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4920363944420282, guid: f80d9e82b4fe244fc937dc02bad32617, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4920363944420282, guid: f80d9e82b4fe244fc937dc02bad32617, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4920363944420282, guid: f80d9e82b4fe244fc937dc02bad32617, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4920363944420282, guid: f80d9e82b4fe244fc937dc02bad32617, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4920363944420282, guid: f80d9e82b4fe244fc937dc02bad32617, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4920363944420282, guid: f80d9e82b4fe244fc937dc02bad32617, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f80d9e82b4fe244fc937dc02bad32617, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1019750238
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,8 +384,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86983ce69bf94ecdb637e37576d5c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 8
-  height: 8
+  width: 5
+  height: 5
   tileDim: {x: 150, y: 150}
   tile1: {fileID: 1784159273614620, guid: 648c11d8db3c6432d9109d54737eba51, type: 2}
   tile2: {fileID: 1880805524145970, guid: 7a4a3cbf76c81409893dbd5e7827e424, type: 2}
@@ -443,11 +401,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54cfab0be7f914764b436f0ef2a1d70c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 8
-  numPieces: 12
+  size: 5
+  numPieces: 4
   prefab: {fileID: 1286687785394068, guid: 2e0dbe6123136496dbefd51c3b89e7a7, type: 2}
   gameBoard: {fileID: 1676583413}
-  selectedPiece: {fileID: 0}
+  selectedSquare: {fileID: 0}
+  onlyJumps: 0
 --- !u!224 &1676583415
 RectTransform:
   m_ObjectHideFlags: 0

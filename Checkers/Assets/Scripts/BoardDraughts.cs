@@ -11,6 +11,7 @@ public class BoardDraughts : Board
 	public GameBoard gameBoard;
 	public Move[] possibleMoves;
 	public Square selectedSquare;
+	public bool onlyJumps = false;
 	void Awake()
 	{
 		board = new PieceDraughts[size, size];
@@ -87,7 +88,7 @@ public class BoardDraughts : Board
 				if( square.currentPiece != null )
 				{
 					PieceDraughts selectedPiece = square.currentPiece;
-					selectedSquare = square;
+					
 					if( selectedPiece.color == PieceColor.BLACK && player == 1 || selectedPiece.color == PieceColor.WHITE && player == 0)
 					{
 						gameBoard.resetHighlights();
@@ -96,16 +97,13 @@ public class BoardDraughts : Board
 						{
 							//can move!
 							square.highLight();
+							selectedSquare = square;
 							foreach (Move mv in possibleMoves)
 							{
 								MoveDraughts m = (MoveDraughts)mv;
 								Square otherSquare = gameBoard.map[m.y,m.x];
 								otherSquare.highLightMoveable();
 							}
-						}
-						else
-						{
-							//reset
 						}
 					}
 				}
@@ -119,6 +117,7 @@ public class BoardDraughts : Board
 							Square otherSquare = gameBoard.map[m.y,m.x];
 							if(square == otherSquare)
 							{
+								gameBoard.resetHighlights();
 								PieceDraughts selectedPiece = selectedSquare.currentPiece;
 								//do move
 								selectedPiece.Move( m, ref board);
@@ -130,22 +129,37 @@ public class BoardDraughts : Board
 								{
 									Move[] jumpMoves = selectedPiece.GetMoves(ref board);
 									List<Move> tempJumpMoves = new List<Move>();
-									if(possibleMoves.Length > 0)
+									if(jumpMoves.Length > 0)
 									{
-										List<Move> moves = new List<Move>();
-										foreach (Move secondJumpMove in possibleMoves)
+										foreach (Move secondJumpMove in jumpMoves)
 										{
 											MoveDraughts nextJump = (MoveDraughts)secondJumpMove;
-											if(nextJump.success )
+											if( nextJump.success )
 											{
 												tempJumpMoves.Add(nextJump);
+												Square highlightSquare = gameBoard.map[nextJump.y, nextJump.x];
+												highlightSquare.highLightMoveable();
 											}
 										}
 									}
-									if(tempJumpMoves.Count>0)
+									if( tempJumpMoves.Count>0 )
 									{
 										possibleMoves = tempJumpMoves.ToArray();
+										Debug.Log("possibleMoves"+possibleMoves+" "+tempJumpMoves.Count+" "+tempJumpMoves);
+										onlyJumps = true;
+										Square successSquare = gameBoard.map[m.y,m.x];
+										successSquare.highLight();
+										selectedSquare = successSquare;
+										//
 									}
+									else
+									{
+										resetPlayer();
+									}
+								}
+								else
+								{
+									resetPlayer();
 								}
 								break;
 							}
@@ -155,8 +169,13 @@ public class BoardDraughts : Board
 			}
 		}
 	}
+	public void testWin()
+	{
+		
+	}
 	public void resetPlayer()
 	{
+		onlyJumps = false;
 		possibleMoves = null;
 		SwitchPlayer();								
 		gameBoard.resetHighlights();

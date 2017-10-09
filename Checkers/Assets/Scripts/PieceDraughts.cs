@@ -21,17 +21,23 @@ public class PieceDraughts : MonoBehaviour
     public PieceType type;
 	public Sprite image1;
 	public Sprite image2;
+	public GameObject crown;
     // next steps here
 
 	public void Setup(int x, int y,
         PieceColor color,
-        PieceType type = PieceType.MAN)
+        PieceType type = PieceType.KING)
 	{
 		this.x = x;
 		this.y = y;
 		this.color = color;
 		this.type = type;
+		
 		setTeam();
+		if(this.type==PieceType.MAN)
+		{
+			crown.SetActive(false);
+		}
 	}
 
 	void setTeam()
@@ -58,9 +64,7 @@ public class PieceDraughts : MonoBehaviour
 		// next steps here
 		if (move.success)
 		{
-			Debug.Log("remove "+move.removeX+" "+move.removeY);
 			PieceDraughts piece = board[move.removeY, move.removeX];
-			Debug.Log("delete "+piece);
 			Destroy(piece.gameObject);
 			board[move.removeY, move.removeX] = null;
 		}
@@ -73,11 +77,13 @@ public class PieceDraughts : MonoBehaviour
 	}
 	public void doKinging(ref PieceDraughts [,] board)
 	{
-		int rows = board.GetLength(0);
-		if (color == PieceColor.WHITE && y == rows)
+		int rows = board.GetLength(0)-1;
+		Debug.Log(""+color+" "+y+" "+rows);
+		if (color == PieceColor.WHITE && y == 0 || color == PieceColor.BLACK && y == rows)
+		{
 			type = PieceType.KING;
-		if (color == PieceColor.BLACK && y == 0)
-			type = PieceType.KING;
+			crown.SetActive(true);
+		}
 	}
 	public void doMove()
 	{
@@ -165,7 +171,7 @@ public class PieceDraughts : MonoBehaviour
 				int nowX = x + mX;
 				int nowY = y + mY;
 
-				while (IsMoveInBounds(nowX, nowY, ref board))
+				if (IsMoveInBounds(nowX, nowY, ref board))
 				{
 					PieceDraughts p = board[nowY, nowX];
 					if (p != null && p.color == color)
