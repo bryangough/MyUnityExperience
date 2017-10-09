@@ -54,7 +54,7 @@ public class Piece : MonoBehaviour {
 	}
 	public void kingMe()
 	{
-		if( this.model.type == PieceType.MAN )
+		if( this.model.type == PieceType.KING )
 		{
 			crown.SetActive(true);
 		}
