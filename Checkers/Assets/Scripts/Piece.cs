@@ -14,6 +14,7 @@ public class Piece : MonoBehaviour {
 	//
 	public Vector2 movingTo = new Vector2();
 	public bool moving = false;
+	public bool doKing = false;
 
 	//
 	Animator animator;
@@ -82,11 +83,8 @@ public class Piece : MonoBehaviour {
 		Destroy(this.gameObject, 0.6f);
 	}
 	public void kingMe()
-	{
-		if( this.model.type == PieceType.KING )
-		{
-			crown.SetActive(true);
-		}
+	{		
+		doKing = true;
 	}
 	
 	void Update () {
@@ -98,6 +96,12 @@ public class Piece : MonoBehaviour {
 			{
 				movingTo = new Vector2();
 				moving = false;
+				if( doKing )
+				{
+					doKing = false;
+					animator.Play("King", 0);
+					crown.SetActive(true);
+				}
 			}
 		}
 	}

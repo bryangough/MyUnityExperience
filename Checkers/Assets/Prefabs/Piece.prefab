@@ -45,7 +45,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4147847992137470
 Transform:
   m_ObjectHideFlags: 1
@@ -122,6 +122,7 @@ MonoBehaviour:
   speed: 3
   movingTo: {x: 0, y: 0}
   moving: 0
+  doKing: 0
 --- !u!212 &212195772017327478
 SpriteRenderer:
   m_ObjectHideFlags: 1
