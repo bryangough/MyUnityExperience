@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212274489673840418}
   - component: {fileID: 58562643563353006}
   - component: {fileID: 114618442305647566}
-  - component: {fileID: 95386397641506788}
+  - component: {fileID: 95184669398649990}
   m_Layer: 0
   m_Name: Piece
   m_TagString: Untagged
@@ -88,7 +88,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.34
---- !u!95 &95386397641506788
+--- !u!95 &95184669398649990
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -153,7 +153,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 65f595cf5f3f3438eac0961fb73de496, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

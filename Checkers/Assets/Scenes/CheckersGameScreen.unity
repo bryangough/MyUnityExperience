@@ -293,7 +293,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4946990585193068, guid: 2e0dbe6123136496dbefd51c3b89e7a7, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e0dbe6123136496dbefd51c3b89e7a7, type: 2}
@@ -551,7 +551,7 @@ GameObject:
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 1676583415}
+  - component: {fileID: 1676583414}
   - component: {fileID: 1676583413}
   - component: {fileID: 1676583416}
   m_Layer: 0
@@ -578,8 +578,8 @@ MonoBehaviour:
   piecePrefab: {fileID: 1286687785394068, guid: 2e0dbe6123136496dbefd51c3b89e7a7,
     type: 2}
   onlyJumps: 0
---- !u!224 &1676583415
-RectTransform:
+--- !u!4 &1676583414
+Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -589,13 +589,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1676583416
 MonoBehaviour:
   m_ObjectHideFlags: 0

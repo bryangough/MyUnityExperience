@@ -14,7 +14,15 @@ public class Piece : MonoBehaviour {
 	//
 	public Vector2 movingTo = new Vector2();
 	public bool moving = false;
-	// Use this for initialization
+
+	//
+	Animator animator;
+	SpriteRenderer spriteRenderer;
+	void Start() 
+	{
+		animator = this.GetComponent<Animator>();
+		spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+	}
 	public void setup (PieceModel pieceModel) {
 		this.model = pieceModel;
 		setTeam();
@@ -47,8 +55,10 @@ public class Piece : MonoBehaviour {
 	
 	public void jumpTo()
 	{
+		animator.Play("Jump", 0);
 		moveTo();
-		speed = 7.0f;
+		speed = 4.0f;
+		spriteRenderer.sortingOrder = 2;
 	}
 	public void moveTo()
 	{
@@ -68,6 +78,7 @@ public class Piece : MonoBehaviour {
 
 	public void destroyMe()
 	{
+		spriteRenderer.sortingOrder = 1;
 		Destroy(this.gameObject, 0.6f);
 	}
 	public void kingMe()
@@ -77,6 +88,7 @@ public class Piece : MonoBehaviour {
 			crown.SetActive(true);
 		}
 	}
+	
 	void Update () {
 		if(moving)
 		{
