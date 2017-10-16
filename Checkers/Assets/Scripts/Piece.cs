@@ -24,6 +24,27 @@ public class Piece : MonoBehaviour {
 		animator = this.GetComponent<Animator>();
 		spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 	}
+	void Update () 
+	{
+		if(moving)
+		{
+			float step = speed * Time.deltaTime;
+			transform.localPosition = Vector3.MoveTowards(transform.localPosition, movingTo, step);
+			if(transform.localPosition.x == movingTo.x && transform.localPosition.y == movingTo.y)
+			{
+				movingTo = new Vector2();
+				moving = false;
+				if( doKing )
+				{
+					doKing = false;
+					animator.Play("King", 0);
+					crown.SetActive(true);
+				}
+			}
+		}
+	}
+
+
 	public void setup (PieceModel pieceModel) {
 		this.model = pieceModel;
 		setTeam();
@@ -87,24 +108,7 @@ public class Piece : MonoBehaviour {
 		doKing = true;
 	}
 	
-	void Update () {
-		if(moving)
-		{
-			float step = speed * Time.deltaTime;
-			transform.localPosition = Vector3.MoveTowards(transform.localPosition, movingTo, step);
-			if(transform.localPosition.x == movingTo.x && transform.localPosition.y == movingTo.y)
-			{
-				movingTo = new Vector2();
-				moving = false;
-				if( doKing )
-				{
-					doKing = false;
-					animator.Play("King", 0);
-					crown.SetActive(true);
-				}
-			}
-		}
-	}
+	
 	public static Piece buildPiece(PieceModel pieceModel, GameObject parentObject, GameObject prefab)
 	{
 		GameObject go = GameObject.Instantiate(prefab);
@@ -113,11 +117,13 @@ public class Piece : MonoBehaviour {
 		p.transform.SetParent(parentObject.transform, false);
 		return p;
 	}
+	//Cleanup
 	void OnDestroy()
 	{
 		if(this.model != null)
 		{
-			this.model.OnMove -= setPosition;
+			this.model.OnMove -= moveTo;
+			this.model.OnJump -= jumpTo;
 			this.model.OnDestroyed -= destroyMe;
 			this.model.OnKing -= kingMe;
 		}
