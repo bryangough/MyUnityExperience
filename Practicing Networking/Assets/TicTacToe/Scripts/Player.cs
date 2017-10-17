@@ -6,10 +6,13 @@ using UnityEngine.Networking;
 public class Player : NetworkBehaviour {
 
 	public GameBoard gameBoard;
+	
+	[SyncVar]
 	public Team myTeam;
 	// Use this for initialization
 	void Start () {
-		
+		GameObject g = GameObject.FindWithTag("Board");
+		gameBoard = g.GetComponent<GameBoard>();
 	}
 	
 	public void setup(Team team)
@@ -49,9 +52,18 @@ public class Player : NetworkBehaviour {
 			}
 		}
 	}
-
+	/*void OnConnectedToServer() 
+	{
+        Debug.Log("Connected to server "+myTeam);
+    }*/
+	public override void OnStartLocalPlayer()
+	{
+		Debug.Log("Start me.");
+	}
 	public bool isYourTurn()
 	{
+		if(gameBoard==null)
+			return false;
 		return ( myTeam==gameBoard.turn );
 	}
 	[Command]
@@ -63,7 +75,7 @@ public class Player : NetworkBehaviour {
 		}
 	}
 
-	[ClientRpc]
+	/*[ClientRpc]
     void RpcYourTurn()
     {
 		if( isLocalPlayer )
@@ -73,7 +85,7 @@ public class Player : NetworkBehaviour {
 				Debug.Log(myTeam+"your turn!");
 			}
 		}
-    }
+    }*/
 
 	//is server ends or other player disconnects. Handle win.
 

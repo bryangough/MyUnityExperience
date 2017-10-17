@@ -71,7 +71,7 @@ public class GameBoard : NetworkBehaviour {
 		{
 			turn = Team.red;
 		}*/
-		RpcChangeTurn();
+		RpcChangeTurn(turn);
 	}
 	public void addPiece(int x, int y, Team team)
 	{
@@ -88,18 +88,26 @@ public class GameBoard : NetworkBehaviour {
 			if(index!=-1)
 			{
 				theBoard[index] = newM;
-				//theBoard.Dirty(index);
 			}
-			//theBoard.Remove(m);
-			changeTurn();
+			if( calculateIfWin() )
+			{
 
+			}
+			else
+			{
+				changeTurn();
+			}
 		}
+	}
+	public bool calculateIfWin()
+	{
+		return false;
 	}
 	public Square getSquare(int x, int y)
 	{
 		if(x>=0 && x<3 && y>=0 && y<3)
 		{
-			return tiles[x*3+y];
+			return tiles[x+y*3];
 		}
 		return null;
 	}
@@ -117,13 +125,24 @@ public class GameBoard : NetworkBehaviour {
 			turn = Team.blue;
 		}
 		//
-		RpcChangeTurn();
+		RpcChangeTurn(turn);
 	}
 	[ClientRpc]
-    void RpcChangeTurn()
+	void RpcEndGame(Team winner)
+	{
+		//wins
+		//[1,2,3],[4,5,6],[7,8,9]
+		//[1,4,7],[2,5,8],[3,6,9]
+		//[1,5,6],[3,5,7]
+
+		//display winscreen
+		//
+	}
+	[ClientRpc]
+    void RpcChangeTurn(Team newTurn)
     {
-		//Debug.Log("changeturns"+isLocalPlayer);
-		if(turn == Team.blue)
+		Debug.Log("changeturns "+isLocalPlayer+" "+newTurn);
+		if(newTurn == Team.blue)
 		{
 			boardCamera.backgroundColor = blueColour;
 		}
@@ -134,6 +153,7 @@ public class GameBoard : NetworkBehaviour {
     }
 	void boardChanged(SyncListStruct<BoardModel>.Operation op, int itemIndex)
     {
+		Debug.Log("board change");
 		if(op == SyncListStruct<BoardModel>.Operation.OP_SET)
 		{
 			BoardModel model = theBoard.GetItem(itemIndex);

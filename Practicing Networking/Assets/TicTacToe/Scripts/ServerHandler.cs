@@ -16,7 +16,7 @@ public class ServerHandler : NetworkManager {
 
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
-		Debug.Log("add player.");
+		Debug.Log("add player. ");
         GameObject player = (GameObject)Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
         Player playerComponent = player.GetComponent<Player>();
 		//playerComponent.setup();
@@ -46,6 +46,7 @@ public class ServerHandler : NetworkManager {
 
 	public void OnPlayerDisconnected(NetworkPlayer player)
 	{
+		numberOfPlayers--;
 		//other player wins
 		Debug.Log("disconnect player.");
 	}
