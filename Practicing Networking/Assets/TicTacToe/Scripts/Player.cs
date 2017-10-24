@@ -3,16 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class Player : NetworkBehaviour {
+public class Player : MonoBehaviour {
 
 	public GameBoard gameBoard;
-	
-	[SyncVar]
 	public Team myTeam;
+
+	public NetworkPlayerHandler networkPlayer;
 	// Use this for initialization
 	void Start () {
 		GameObject g = GameObject.FindWithTag("Board");
 		gameBoard = g.GetComponent<GameBoard>();
+
+		networkPlayer = gameObject.GetComponent<NetworkPlayerHandler>();
+
+		if( networkPlayer )
+		{
+			this.gameBoard = networkPlayer.gameBoard;
+			this.myTeam = networkPlayer.myTeam;
+		}
 	}
 	
 	public void setup(Team team)
@@ -22,7 +30,8 @@ public class Player : NetworkBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if( isLocalPlayer && isYourTurn() )
+		//isLocalPlayer && 
+		if( isYourTurn() )
 		{
 			Square square = null;
 			//mobile
@@ -47,18 +56,17 @@ public class Player : NetworkBehaviour {
 			{
 				if( square.team == Team.none )
 				{
-					CmdDoMove( square.x, square.y);
+					if(networkPlayer != null)
+					{
+						networkPlayer.touchSpot(square);
+					}
+					else
+					{
+						gameBoard.addPiece(square.x, square.y, this.myTeam);
+					}
 				}
 			}
 		}
-	}
-	/*void OnConnectedToServer() 
-	{
-        Debug.Log("Connected to server "+myTeam);
-    }*/
-	public override void OnStartLocalPlayer()
-	{
-		Debug.Log("Start me.");
 	}
 	public bool isYourTurn()
 	{
@@ -66,27 +74,4 @@ public class Player : NetworkBehaviour {
 			return false;
 		return ( myTeam==gameBoard.turn );
 	}
-	[Command]
-	public void CmdDoMove(int x, int y)
-	{
-		if (isServer)
-		{
-			gameBoard.addPiece(x,y, this.myTeam);
-		}
-	}
-
-	/*[ClientRpc]
-    void RpcYourTurn()
-    {
-		if( isLocalPlayer )
-		{
-			if(gameBoard.turn == myTeam)
-			{
-				Debug.Log(myTeam+"your turn!");
-			}
-		}
-    }*/
-
-	//is server ends or other player disconnects. Handle win.
-
 }

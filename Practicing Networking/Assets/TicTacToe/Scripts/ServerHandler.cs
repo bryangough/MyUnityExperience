@@ -18,7 +18,7 @@ public class ServerHandler : NetworkManager {
     {
 		Debug.Log("add player. ");
         GameObject player = (GameObject)Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-        Player playerComponent = player.GetComponent<Player>();
+        NetworkPlayerHandler playerComponent = player.GetComponent<NetworkPlayerHandler>();
 		//playerComponent.setup();
 		playerComponent.gameBoard = gameBoard;
 		if(numberOfPlayers==0)
@@ -47,7 +47,6 @@ public class ServerHandler : NetworkManager {
 	public void OnPlayerDisconnected(NetworkPlayer player)
 	{
 		numberOfPlayers--;
-		//other player wins
 		Debug.Log("disconnect player.");
 	}
 	// Use this for initialization

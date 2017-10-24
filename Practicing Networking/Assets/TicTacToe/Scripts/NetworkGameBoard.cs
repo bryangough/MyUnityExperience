@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class GameBoard : NetworkBehaviour {
+
+public class NetworkGameBoard : NetworkBehaviour {
 
 	public Camera boardCamera;
 	public Color blueColour;
@@ -16,9 +17,6 @@ public class GameBoard : NetworkBehaviour {
 
 	[SyncVar]
 	public Team turn = Team.none;
-	
-	[SyncVar]
-	public bool gameEnded = false;
 	
 
 	public class TheBoard : SyncListStruct<BoardModel> 
@@ -60,9 +58,6 @@ public class GameBoard : NetworkBehaviour {
 	}
 	public void addPiece(int x, int y, Team team)
 	{
-		if(gameEnded)
-			return;
-
 		Square s = getSquare(x,y);
 		if( s!=null )
 		{
@@ -77,11 +72,15 @@ public class GameBoard : NetworkBehaviour {
 			{
 				theBoard[index] = newM;
 			}
-			if( calculateIfWin(team) )
+			if( calculateIfWin() )
 			{
-				gameEnded = true;
-				RpcEndGame(team);
-				//end game
+		//wins
+		//[1,2,3],[4,5,6],[7,8,9]
+		//[1,4,7],[2,5,8],[3,6,9]
+		//[1,5,6],[3,5,7]
+
+		//display winscreen
+		//
 			}
 			else
 			{
@@ -89,35 +88,8 @@ public class GameBoard : NetworkBehaviour {
 			}
 		}
 	}
-	public bool calculateIfWin(Team turn)
+	public bool calculateIfWin()
 	{
-		int[,] winSpots = new int[,] { 
-				{ 0, 1, 2 }, { 3, 4, 5 }, { 6, 7, 8 },
-				{ 0, 3, 6 }, { 1, 4, 7 }, { 2, 5, 8 },
-				{ 0, 4, 5 }, { 2, 4, 6 }
-			};
-		//this is super lazy
-		int count = 0;
-		for(var x = 0; x < winSpots.Length; x++)
-		{
-			count = 0;
-			for( var y = 0; y < 3; y++)	
-			{
-
-				if( tiles[x].location.team != turn )
-				{
-					break;
-				}
-				else
-				{
-					count++;
-				}
-			}
-			if(count == 3)
-			{
-				return true;
-			}
-		}
 		return false;
 	}
 	public Square getSquare(int x, int y)
@@ -147,16 +119,7 @@ public class GameBoard : NetworkBehaviour {
 	[ClientRpc]
 	void RpcEndGame(Team winner)
 	{
-		//display winscreen
-		Debug.Log("winner "+winner);
-		if(winner == Team.blue)
-		{
-			boardCamera.backgroundColor = blueColour;
-		}
-		else
-		{
-			boardCamera.backgroundColor = redColour;
-		}
+		
 	}
 	[ClientRpc]
     void RpcChangeTurn(Team newTurn)

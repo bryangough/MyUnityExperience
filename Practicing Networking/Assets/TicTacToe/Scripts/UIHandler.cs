@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIHandler : MonoBehaviour {
 
@@ -16,6 +17,6 @@ public class UIHandler : MonoBehaviour {
 
 	public void resetScene()
 	{
-		Application.LoadLevel(Application.loadedLevel);
+		//SceneManager.LoadScene(Application.loadedLevel);
 	}
 }
