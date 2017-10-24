@@ -5,7 +5,7 @@ using UnityEngine;
 public class Square : MonoBehaviour {
 	public int x;
 	public int y;
-	public BoardModel location;
+	public SquareModel location;
 
 	// Use this for initialization
 	SpriteRenderer spriteRenderer;

@@ -4,27 +4,28 @@ using System.Collections;
 public class BoardAI
 {
 	public static float Minimax(
-			Board board,
-			PieceColor player,
+			BoardModel board,
+			Team player,
 			int maxDepth,
 			int currentDepth,
-			ref Move bestMove)
+			AIModel aI,
+			ref SquareModel bestMove)
 	{
-		if (board.IsGameOver() || currentDepth == maxDepth)
-    		return board.Evaluate(player);
+		if (board.isWin() || currentDepth == maxDepth)
+    		return aI.evaluate(board, player);
 
-		bestMove = null;
+		//bestMove = null;
 		float bestScore = Mathf.Infinity;
-		if (board.getCurrentPlayer() == player)
+		if (board.currentTeam() == player)
     		bestScore = Mathf.NegativeInfinity;
 
-		foreach (Move m in board.GetMoves())
+		foreach (SquareModel m in board.getMoves())
 		{
-			Board b = board.MakeMove(m);
+			BoardModel b = board.doMoveClone(m);
 			float currentScore;
-			Move currentMove = null;
-			currentScore = Minimax(b, player, maxDepth, currentDepth + 1, ref currentMove);
-			if (board.getCurrentPlayer() == player)
+			SquareModel currentMove = m;
+			currentScore = Minimax(b, player, maxDepth, currentDepth + 1, aI, ref currentMove);
+			if (board.currentTeam() == player)
 			{
 				if (currentScore > bestScore)
 				{

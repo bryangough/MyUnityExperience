@@ -4,9 +4,10 @@
 	blue,
 	red
 }
-public struct BoardModel
+[System.Serializable]
+public struct SquareModel
 {
-	public BoardModel(int x, int y, Team team)
+	public SquareModel(int x, int y, Team team)
 	{
 		this.x = x;
 		this.y = y;

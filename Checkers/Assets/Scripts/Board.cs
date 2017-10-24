@@ -26,7 +26,7 @@ public class Board
 		return true;
 	}
 
-	public virtual PieceColor GetCurrentPlayer()
+	public virtual PieceColor getCurrentPlayer()
 	{
 		return player;
 	}

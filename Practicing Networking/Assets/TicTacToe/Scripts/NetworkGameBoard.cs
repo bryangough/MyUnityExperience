@@ -19,7 +19,7 @@ public class NetworkGameBoard : NetworkBehaviour {
 	public Team turn = Team.none;
 	
 
-	public class TheBoard : SyncListStruct<BoardModel> 
+	public class TheBoard : SyncListStruct<SquareModel> 
 	{
 
 	}
@@ -32,14 +32,14 @@ public class NetworkGameBoard : NetworkBehaviour {
 		
 		if(!isServer)
 			return;
-		BoardModel boardModel;
+		SquareModel squareModel;
 		for(var x=0;x<tiles.Length;x++)
 		{
-			boardModel = new BoardModel();
-			boardModel.x = tiles[x].x;
-			boardModel.y = tiles[x].y;
-			tiles[x].location = boardModel;
-			theBoard.Add(boardModel);
+			squareModel = new SquareModel();
+			squareModel.x = tiles[x].x;
+			squareModel.y = tiles[x].y;
+			tiles[x].location = squareModel;
+			theBoard.Add(squareModel);
 		}
 		//theBoard.Add()
     }
@@ -64,8 +64,8 @@ public class NetworkGameBoard : NetworkBehaviour {
 			//s.team = team;
 			
 			int index = theBoard.IndexOf(s.location);
-			BoardModel m = s.location;
-			BoardModel newM = new BoardModel(m.x, m.y, team);
+			SquareModel m = s.location;
+			SquareModel newM = new SquareModel(m.x, m.y, team);
 			s.location = newM;
 			//m.team = team;
 			if(index!=-1)
@@ -134,17 +134,17 @@ public class NetworkGameBoard : NetworkBehaviour {
 			boardCamera.backgroundColor = redColour;
 		}
     }
-	void boardChanged(SyncListStruct<BoardModel>.Operation op, int itemIndex)
+	void boardChanged(SyncListStruct<SquareModel>.Operation op, int itemIndex)
     {
-		if(op == SyncListStruct<BoardModel>.Operation.OP_SET)
+		if(op == SyncListStruct<SquareModel>.Operation.OP_SET)
 		{
-			BoardModel model = theBoard.GetItem(itemIndex);
+			SquareModel model = theBoard.GetItem(itemIndex);
 			Square s = getSquare(model.x, model.y);
 			addMarker(s, model.team);
 		}
-		if(op == SyncListStruct<BoardModel>.Operation.OP_ADD)
+		if(op == SyncListStruct<SquareModel>.Operation.OP_ADD)
 		{
-			BoardModel model = theBoard.GetItem(itemIndex);
+			SquareModel model = theBoard.GetItem(itemIndex);
 			Square s = getSquare(model.x, model.y);
 			//Debug.Log("add s"+s);
 			s.location = model;

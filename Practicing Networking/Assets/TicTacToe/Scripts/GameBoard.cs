@@ -10,6 +10,9 @@ public class GameBoard : NetworkBehaviour {
 	public Color redColour;
 
 	public Square[] tiles;
+	public BoardModel model;
+
+	//public Square[] SquareModel;
 
 	public GameObject redObject;
 	public GameObject blueObject;
@@ -21,7 +24,7 @@ public class GameBoard : NetworkBehaviour {
 	public bool gameEnded = false;
 	
 
-	public class TheBoard : SyncListStruct<BoardModel> 
+	public class TheBoard : SyncListStruct<SquareModel> 
 	{
 
 	}
@@ -34,10 +37,10 @@ public class GameBoard : NetworkBehaviour {
 		
 		if(!isServer)
 			return;
-		BoardModel boardModel;
+		SquareModel boardModel;
 		for(var x=0;x<tiles.Length;x++)
 		{
-			boardModel = new BoardModel();
+			boardModel = new SquareModel();
 			boardModel.x = tiles[x].x;
 			boardModel.y = tiles[x].y;
 			tiles[x].location = boardModel;
@@ -69,8 +72,8 @@ public class GameBoard : NetworkBehaviour {
 			//s.team = team;
 			
 			int index = theBoard.IndexOf(s.location);
-			BoardModel m = s.location;
-			BoardModel newM = new BoardModel(m.x, m.y, team);
+			SquareModel m = s.location;
+			SquareModel newM = new SquareModel(m.x, m.y, team);
 			s.location = newM;
 			//m.team = team;
 			if(index!=-1)
@@ -98,13 +101,17 @@ public class GameBoard : NetworkBehaviour {
 			};
 		//this is super lazy
 		int count = 0;
-		for(var x = 0; x < winSpots.Length; x++)
+		
+		int length = winSpots.GetLength(0);
+		Debug.Log("size "+length);
+		for(var x = 0; x < length; x++)
 		{
 			count = 0;
 			for( var y = 0; y < 3; y++)	
 			{
-
-				if( tiles[x].location.team != turn )
+				Debug.Log("x-y "+x+"-"+y);
+				Debug.Log(winSpots[x,y]);
+				if( tiles[ winSpots[x,y] ].location.team != turn )
 				{
 					break;
 				}
@@ -113,6 +120,7 @@ public class GameBoard : NetworkBehaviour {
 					count++;
 				}
 			}
+			Debug.Log("Count "+count);
 			if(count == 3)
 			{
 				return true;
@@ -171,17 +179,17 @@ public class GameBoard : NetworkBehaviour {
 			boardCamera.backgroundColor = redColour;
 		}
     }
-	void boardChanged(SyncListStruct<BoardModel>.Operation op, int itemIndex)
+	void boardChanged(SyncListStruct<SquareModel>.Operation op, int itemIndex)
     {
-		if(op == SyncListStruct<BoardModel>.Operation.OP_SET)
+		if(op == SyncListStruct<SquareModel>.Operation.OP_SET)
 		{
-			BoardModel model = theBoard.GetItem(itemIndex);
+			SquareModel model = theBoard.GetItem(itemIndex);
 			Square s = getSquare(model.x, model.y);
 			addMarker(s, model.team);
 		}
-		if(op == SyncListStruct<BoardModel>.Operation.OP_ADD)
+		if(op == SyncListStruct<SquareModel>.Operation.OP_ADD)
 		{
-			BoardModel model = theBoard.GetItem(itemIndex);
+			SquareModel model = theBoard.GetItem(itemIndex);
 			Square s = getSquare(model.x, model.y);
 			//Debug.Log("add s"+s);
 			s.location = model;

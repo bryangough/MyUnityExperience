@@ -194,6 +194,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 0
   y: 2
+  location:
+    x: 0
+    y: 0
+    team: 0
 --- !u!61 &60911493
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -282,9 +286,39 @@ MonoBehaviour:
   - {fileID: 60911492}
   - {fileID: 368548149}
   - {fileID: 1536959565}
+  model:
+    currentMap:
+    - x: 0
+      y: 0
+      team: 0
+    - x: 0
+      y: 0
+      team: 0
+    - x: 0
+      y: 0
+      team: 0
+    - x: 0
+      y: 0
+      team: 0
+    - x: 0
+      y: 0
+      team: 0
+    - x: 0
+      y: 0
+      team: 0
+    - x: 0
+      y: 0
+      team: 0
+    - x: 0
+      y: 0
+      team: 0
+    - x: 0
+      y: 0
+      team: 0
   redObject: {fileID: 1853055028994658, guid: 4deed4700ea794e7e9492b685b50ac46, type: 2}
   blueObject: {fileID: 1539240384264734, guid: 18261e821ce5541049791b546e945f96, type: 2}
   turn: 0
+  gameEnded: 0
 --- !u!114 &69854080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,6 +566,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 2
   y: 1
+  location:
+    x: 0
+    y: 0
+    team: 0
 --- !u!61 &245644457
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -643,6 +681,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 1
   y: 0
+  location:
+    x: 0
+    y: 0
+    team: 0
 --- !u!61 &263629692
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -754,6 +796,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 1
   y: 2
+  location:
+    x: 0
+    y: 0
+    team: 0
 --- !u!61 &368548150
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -972,6 +1018,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 2
   y: 0
+  location:
+    x: 0
+    y: 0
+    team: 0
 --- !u!61 &551090902
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1219,6 +1269,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 0
   y: 0
+  location:
+    x: 0
+    y: 0
+    team: 0
 --- !u!61 &938643179
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1419,6 +1473,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 1
   y: 1
+  location:
+    x: 0
+    y: 0
+    team: 0
 --- !u!61 &1122193643
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1652,6 +1710,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 2
   y: 2
+  location:
+    x: 0
+    y: 0
+    team: 0
 --- !u!61 &1536959566
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1839,6 +1901,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 0
   y: 1
+  location:
+    x: 0
+    y: 0
+    team: 0
 --- !u!61 &1920553141
 BoxCollider2D:
   m_ObjectHideFlags: 0

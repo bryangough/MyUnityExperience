@@ -10,7 +10,7 @@ public class UiHandler : MonoBehaviour {
 	public WinScreen winScreen;
 	public void playerChange()
 	{
-		if(theBoard.board.GetCurrentPlayer() == PieceColor.BLACK)
+		if(theBoard.board.getCurrentPlayer() == PieceColor.BLACK)
 		{
 			playerLabel.text = "Player: RED";
 		}
@@ -28,7 +28,7 @@ public class UiHandler : MonoBehaviour {
 	public void showWinScreen()
 	{
 		//theBoard
-		winScreen.displayMe(theBoard.board.GetCurrentPlayer());
+		winScreen.displayMe(theBoard.board.getCurrentPlayer());
 	}
 	
 	void Update () {
