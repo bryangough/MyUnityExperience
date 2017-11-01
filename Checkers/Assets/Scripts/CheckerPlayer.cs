@@ -18,7 +18,7 @@ public class CheckerPlayer : MonoBehaviour {
 	{
 		if(board==null)
 			return;
-		if( board.board.IsGameOver() )
+		if( board.board.isGameOver() )
 		{
 			return;
 		}

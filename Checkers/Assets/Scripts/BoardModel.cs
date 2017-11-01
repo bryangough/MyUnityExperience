@@ -7,7 +7,7 @@ public class BoardModel : Board
 {
     public int size = 8;
     public int numPieces = 12;
-    protected PieceModel[,] board;
+    public PieceModel[,] board;
 	//public GameBoard gameBoard;
 	protected bool gameDone = false;
 	//
@@ -120,45 +120,8 @@ public class BoardModel : Board
 		board[y, x] = piece;
 		//gameBoard.map[y,x].currentPiece = piece;
 	}
-	public override float Evaluate()
-	{
-		return Evaluate(player);
-	}
-	public override float Evaluate(PieceColor color)
-	{
-		float eval = 1f;
-		float pointSimple = 1f;
-		float pointCapture = 5f;
-
-		int rows = board.GetLength(0);
-		int cols = board.GetLength(1);
-
-		int i;
-		int j;
-
-		for (i = 0; i < rows; i++)
-		{
-			for (j = 0; j < cols; j++)
-			{
-				PieceModel p = board[i, j];
-				if (p == null)
-					continue;
-				if (p.color != color)
-					continue;
-				Move[] moves = p.GetMoves(ref board);
-				foreach (Move mv in moves)
-				{
-					MoveModel m = (MoveModel)mv;
-					if ( m.isCapture() )
-						eval += pointCapture;
-					else
-						eval += pointSimple;
-				}
-			}
-		}
-		return eval;
-	}
-	public override Move[] GetMoves()
+	
+	public override Move[] getMoves()
 	{
 		List<Move> moves = new List<Move>();
 		int rows = board.GetLength(0);
@@ -214,7 +177,7 @@ public class BoardModel : Board
 		//update change
 		return player;
 	}
-	public override bool IsGameOver()
+	public override bool isGameOver()
 	{
 		return gameDone;
 	}

@@ -162,7 +162,8 @@ public class PieceModel
 						int hopY = nowY + mY;
 						if (!IsMoveInBounds(hopX, hopY, ref board))
 							break;
-						
+						if (board[hopY, hopX] != null)
+							continue;
 						m.x = hopX;
 						m.y = hopY;
 						m.capture = new Capture(nowX, nowY);

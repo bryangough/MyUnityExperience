@@ -11,17 +11,17 @@ public class Board
 		player = PieceColor.BLACK;
 	}
 
-	public virtual Move[] GetMoves()
+	public virtual Move[] getMoves()
 	{
 		return new Move[0];
 	}
 
-	public virtual Board MakeMove(Move m)
+	public virtual BoardModel makeMove(Move m)
 	{
-		return new Board();
+		return new BoardModel();
 	}
 
-	public virtual bool IsGameOver()
+	public virtual bool isGameOver()
 	{
 		return true;
 	}
@@ -29,17 +29,5 @@ public class Board
 	public virtual PieceColor getCurrentPlayer()
 	{
 		return player;
-	}
-
-	
-
-	public virtual float Evaluate(PieceColor player)
-	{
-		return Mathf.NegativeInfinity;
-	}
-
-	public virtual float Evaluate()
-	{
-		return Mathf.NegativeInfinity;
 	}
 }
