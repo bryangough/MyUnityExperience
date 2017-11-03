@@ -3,45 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-
+//network represntation of the game
 public class NetworkGameBoard : NetworkBehaviour {
 
-	public Camera boardCamera;
-	public Color blueColour;
-	public Color redColour;
-
-	public Square[] tiles;
-
-	public GameObject redObject;
-	public GameObject blueObject;
+	
 
 	[SyncVar]
 	public Team turn = Team.none;
 	
+	[SyncVar]
+	public bool gameEnded = false;
+	
+	public GameBoard boardGraphics;
 
 	public class TheBoard : SyncListStruct<SquareModel> 
 	{
 
 	}
-    TheBoard theBoard = new TheBoard();
+    TheBoard syncedBoard = new TheBoard();
+	public void createBoard()
+	{
+		SquareModel boardModel;
+		Square[] tiles = boardGraphics.tiles;
+		for(var x=0;x<tiles.Length;x++)
+		{
+			boardModel = new SquareModel();
+			boardModel.x = tiles[x].x;
+			boardModel.y = tiles[x].y;
+			tiles[x].location = boardModel;
+			syncedBoard.Add(boardModel);
+		}
+	}
 	
 	// Use this for initialization
 	void Start()
     {
-        theBoard.Callback = boardChanged;
+
+        syncedBoard.Callback = boardChanged;
 		
 		if(!isServer)
 			return;
-		SquareModel squareModel;
-		for(var x=0;x<tiles.Length;x++)
-		{
-			squareModel = new SquareModel();
-			squareModel.x = tiles[x].x;
-			squareModel.y = tiles[x].y;
-			tiles[x].location = squareModel;
-			theBoard.Add(squareModel);
-		}
-		//theBoard.Add()
+		
+		createBoard();
     }
 	
 	public void startGame()
@@ -58,29 +61,27 @@ public class NetworkGameBoard : NetworkBehaviour {
 	}
 	public void addPiece(int x, int y, Team team)
 	{
+		if(gameEnded)
+			return;
+
 		Square s = getSquare(x,y);
 		if( s!=null )
 		{
 			//s.team = team;
 			
-			int index = theBoard.IndexOf(s.location);
+			int index = syncedBoard.IndexOf(s.location);
 			SquareModel m = s.location;
 			SquareModel newM = new SquareModel(m.x, m.y, team);
 			s.location = newM;
 			//m.team = team;
 			if(index!=-1)
 			{
-				theBoard[index] = newM;
+				syncedBoard[index] = newM;
 			}
-			if( calculateIfWin() )
+			if( calculateIfWin(team) )
 			{
-		//wins
-		//[1,2,3],[4,5,6],[7,8,9]
-		//[1,4,7],[2,5,8],[3,6,9]
-		//[1,5,6],[3,5,7]
-
-		//display winscreen
-		//
+				gameEnded = true;
+				RpcEndGame(team);
 			}
 			else
 			{
@@ -88,10 +89,7 @@ public class NetworkGameBoard : NetworkBehaviour {
 			}
 		}
 	}
-	public bool calculateIfWin()
-	{
-		return false;
-	}
+
 	public Square getSquare(int x, int y)
 	{
 		if(x>=0 && x<3 && y>=0 && y<3)
@@ -119,7 +117,16 @@ public class NetworkGameBoard : NetworkBehaviour {
 	[ClientRpc]
 	void RpcEndGame(Team winner)
 	{
-		
+		//display winscreen
+		Debug.Log("winner "+winner);
+		if(winner == Team.blue)
+		{
+			boardCamera.backgroundColor = blueColour;
+		}
+		else
+		{
+			boardCamera.backgroundColor = redColour;
+		}
 	}
 	[ClientRpc]
     void RpcChangeTurn(Team newTurn)
@@ -138,32 +145,16 @@ public class NetworkGameBoard : NetworkBehaviour {
     {
 		if(op == SyncListStruct<SquareModel>.Operation.OP_SET)
 		{
-			SquareModel model = theBoard.GetItem(itemIndex);
+			SquareModel model = syncedBoard.GetItem(itemIndex);
 			Square s = getSquare(model.x, model.y);
 			addMarker(s, model.team);
 		}
 		if(op == SyncListStruct<SquareModel>.Operation.OP_ADD)
 		{
-			SquareModel model = theBoard.GetItem(itemIndex);
+			SquareModel model = syncedBoard.GetItem(itemIndex);
 			Square s = getSquare(model.x, model.y);
 			//Debug.Log("add s"+s);
 			s.location = model;
 		}
     }
-	public void addMarker(Square square, Team team)
-	{
-		if( team == Team.none)
-			return;
-		GameObject prefab = redObject;
-		if( team == Team.blue)
-		{
-			prefab = blueObject;
-		}
-		GameObject player = (GameObject)Instantiate(prefab, Vector3.zero, Quaternion.identity);
-		player.transform.position = square.transform.position;
-	}
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
