@@ -66,16 +66,16 @@ public class GameBoard : NetworkBehaviour {
 		if (!isServer)
             return;
 
-		if(turn == Team.blue)
+		if(boardModel.turn == Team.blue)
 		{
-			turn = Team.red;
+			boardModel.turn = Team.red;
 		}
 		else
 		{
-			turn = Team.blue;
+			boardModel.turn = Team.blue;
 		}
 		//
-		RpcChangeTurn(turn);
+		RpcChangeTurn(boardModel.turn);
 	}
 	
 	void boardChanged(SyncListStruct<SquareModel>.Operation op, int itemIndex)
