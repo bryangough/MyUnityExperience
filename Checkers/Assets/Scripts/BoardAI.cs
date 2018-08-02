@@ -10,7 +10,7 @@ public class BoardAI
 			int currentDepth,
 			ref Move bestMove)
 	{
-		if (board.IsGameOver() || currentDepth == maxDepth)
+		if (board.isGameOver() || currentDepth == maxDepth)
     		return evaluate(player, board);
 
 		bestMove = null;
